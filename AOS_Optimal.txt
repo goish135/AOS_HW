@@ -1,0 +1,19 @@
+Ref : https://www.geeksforgeeks.org/optimal-page-replacement-algorithm/
+
+Optimal Page Replacement Algorithm
+
+OS replaces the page that will not be used for the longest period of time in future.
+
+Input : Number of frames, fn = 3
+Reference String, pg[] = {7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1};
+Output :  No. of hits = 11 
+                 No. of misses = 9
+
+Input : Number of frames, fn = 4 
+        Reference String, pg[] = {7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2};
+Output : No. of hits = 7
+                No. of misses = 6
+
+The idea is simple, for every reference we do following :
+If referred page is already present, increment hit count.
+If not present, find if a page that is never referenced in future. If such a page exists, replace this page with new page. If no such page exists, find a page that is referenced farthest in future. Replace this page with new page.
