@@ -25,6 +25,15 @@ Loop 2 : search (0,1),Set the use bit to zero for all frames bypassed
 * If step 2 failed, all use bits will now be zero and repetition of steps 1 and 2 are guaranteed to find a frame for replacement
 """
 
+while index < len(rs):
+    print('index',index)
+    # check whether in frame
+    for i in range(frame_number):
+        if rs[index] == Frame[i]["value"]:
+            #print(rs[index],'in')
+            pass
+        else: #replace
+            #print('pass',i)
 
-
+    index = index + 1        
 
