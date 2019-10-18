@@ -83,8 +83,10 @@ print('page_fault_sum:',page_fault_sum)
 myqueue_4 = queue.Queue(4)
 rs_ex2 = [1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5]
 """
-frame_number = input("Number of frame: ") 
-myqueue = queue.Queue(int(frame_number))
+import csv
+with open('fifo_rrs.csv','a',newline='\n') as csvfile:
+    writer = csv.writer(csvfile)
+    writer.writerow(["numberof_Frame","Page Fault ","Interrupt","disk write"])
 
 import random
 len_rs = 100000
@@ -92,43 +94,53 @@ len_rs = 100000
 random_rs = []
 dw_set = [] # disk write set
 for i in range(len_rs):
-     random_rs.append(random.randint(1,500))
-     dw_set.append(random.randint(0,1))
- 
+    random_rs.append(random.randint(1,500))
+    dw_set.append(random.randint(0,1))
 
-page_fault_sum = 0
-interrupt = 0
-disk_write = 0
-
-
-cnt = 0 
-while myqueue.full()!=True :
-    myqueue.put(random_rs[cnt])
-    cnt = cnt + 1
-    page_fault_sum = page_fault_sum + 1
-
-print('page_fault_sum:',page_fault_sum)
+for i in range(10):
+    frame_number = input("Number of frame: ")     
+    myqueue = queue.Queue(int(frame_number))
+    page_fault_sum = 0
+    interrupt = 0
+    disk_write = 0
 
 
-
-# 塞滿了，要塞下一個 先看 page 是否在 queue 裡 
-# 有 則 hit , 沒有 則 miss 
-
-while cnt != len(random_rs) : 
-    if random_rs[cnt] in myqueue.queue:    
-        pass
-    else:
-        interrupt = interrupt + 1
-        page_fault_sum = page_fault_sum + 1
-        if dw_set[random_rs.index(myqueue.get())] == 1 : # modify
-            disk_write = disk_write + 1
-        #myqueue_10.get()
+    cnt = 0 
+    while myqueue.full()!=True :
         myqueue.put(random_rs[cnt])
-    cnt = cnt + 1
+        cnt = cnt + 1
+        page_fault_sum = page_fault_sum + 1
 
-print('page_fault_sum: ',page_fault_sum)
-print('inteerrupt: ',interrupt)
-print('disk write: ',disk_write)
+    print('page_fault_sum:',page_fault_sum)
+
+
+
+    # 塞滿了，要塞下一個 先看 page 是否在 queue 裡 
+    # 有 則 hit , 沒有 則 miss 
+
+    while cnt != len(random_rs) : 
+        if random_rs[cnt] in myqueue.queue:    
+            pass
+        else:
+            interrupt = interrupt + 1
+            page_fault_sum = page_fault_sum + 1
+            if dw_set[random_rs.index(myqueue.get())] == 1 : # modify
+                disk_write = disk_write + 1
+            #myqueue_10.get()
+            myqueue.put(random_rs[cnt])
+        cnt = cnt + 1
+
+    print('page_fault_sum: ',page_fault_sum)
+    print('inteerrupt: ',interrupt)
+    print('disk write: ',disk_write)
+
+    # 將 (Radom Reference String + Radom dw_set) + Page Fault + Interrupt + disk write 寫入 excel
+    with open('fifo_rrs.csv','a',newline='\n') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerow([frame_number,page_fault_sum,interrupt,disk_write])
+     
+
+
 
 
 
