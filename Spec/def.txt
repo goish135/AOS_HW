@@ -1,0 +1,7 @@
+# 如何定義 page fault
+load page into memory + replacement  
+# 如何定義 interrupt
+當發生 replacement 的時候 
+# 如何定義 disk writes (in pages)
+先設定 dirty bit 
+當被選為 victim page 且 dirty bit 為 1 的時候，需寫回disk
