@@ -93,7 +93,7 @@ random_rs = []
 dw_set = [] # disk write set
 for i in range(len_rs):
      random_rs.append(random.randint(1,500))
-     dw_set.append(random.randint(1,500))
+     dw_set.append(random.randint(0,1))
  
 
 page_fault_sum = 0
