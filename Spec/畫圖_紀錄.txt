@@ -1,0 +1,11 @@
+input 10
+跑資料 -3lists- 寫進 excel 
+
+...
+
+input 100
+跑資料 -3lists- 寫進 excel
+畫圖 (折線圖)
+x = 10~100
+y = page fault (一條)+interrupt (一條) + disk write (一條) 
+
