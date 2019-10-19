@@ -5,3 +5,14 @@ load page into memory + replacement
 # 如何定義 disk writes (in pages)
 先設定 dirty bit 
 當被選為 victim page 且 dirty bit 為 1 的時候，需寫回disk
+
+# test reference string
+- Locality 
+- Random 一個數字 (1~500挑) > Random 500-x > 2 , 2 個數字 1個數字
+Aussume 1 長度可random 範圍 500-1 = 499 (1~499) # min 情況
+498 500-498=2  ex : 498~499 or 498~500
+
+499 500-499=1 
+Aussume 500 500-500 = 0 +1 # max 情況
+---
+直到 塞滿100,000
