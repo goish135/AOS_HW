@@ -103,7 +103,7 @@ for i in range(len_rs):
     dw_set.append(random.randint(0,1))
 """
  
-while len(random_rs) < len_rs: # to be fix
+while len(random_rs) < len_rs: 
      
     begin = random.randint(1,500)
     maxApend = 500 - begin 
