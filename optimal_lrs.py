@@ -4,7 +4,7 @@
 #rs_tc1 = [7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1]
 
 import csv
-with open('optimal_rrs.csv','a',newline='\n') as csvfile:
+with open('optimal_lrs.csv','a',newline='\n') as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(["numberof_Frame","Page Fault ","Interrupt","disk write"])
 
@@ -150,6 +150,6 @@ for i in range(10):
     print('Final Page Fault: ',page_fault)
     print('interrupt: ',interrupt)
     print('disk write: ',dw)
-    with open('optimal_rrs.csv','a',newline='\n') as csvfile:
+    with open('optimal_lrs.csv','a',newline='\n') as csvfile:
         writer = csv.writer(csvfile)
         writer.writerow([fn_tc1,page_fault,interrupt,dw])    
