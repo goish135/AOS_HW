@@ -1,4 +1,4 @@
-numberof_Frame,Page Fault ,Interrupt,disk write
+,Page Fault ,Interrupt,disk write
 10,98001,97991,50865
 20,96084,96064,49875
 30,94031,94001,48820
