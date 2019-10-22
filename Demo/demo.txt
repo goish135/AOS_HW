@@ -1,4 +1,0 @@
-三個輸入檔案
-(1) Random 
-(2) Locality
-(3) Custom (Why)
