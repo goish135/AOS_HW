@@ -2,6 +2,10 @@
 import sys
 import json
 
+answer_PageFault = 0
+answer_Interrupt = 0
+answer_DiskWrite = 0
+
 def judge_mode(num):
     if num == 1:
         #print("Random RS")
@@ -92,7 +96,15 @@ def fifo(mode):
             print('inteerrupt: ',interrupt)
             print('disk write: ',disk_write)
             print("===============================")
-            frame_number = frame_number + 10                        
+            #answer_PageFault = page_fault_sum
+            #answer_Interrupt = interrupt
+            #answer_DiskWrite = disk_write            
+            # 寫入 csv
+            import csv
+            with open('demo_statistic.csv','a',newline='') as csvfile:
+                writer = csv.writer(csvfile)
+                writer.writerow([argvlist[1],argvlist[2],frame_number,page_fault_sum,interrupt,disk_write])
+            frame_number = frame_number + 10
 
     frame_number = 10    
     #for i in range(10):
@@ -133,7 +145,16 @@ def fifo(mode):
         print('inteerrupt: ',interrupt)
         print('disk write: ',disk_write)
         print("===============================")
-        frame_number = frame_number + 10                
+        #answer_PageFault = page_fault_sum
+        #answer_Interrupt = interrupt
+        #answer_DiskWrite = disk_write        
+                        
+        # 寫入 csv
+        import csv
+        with open('demo_statistic.csv','a',newline='') as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerow([argvlist[1],argvlist[2],frame_number,page_fault_sum,interrupt,disk_write])
+        frame_number = frame_number + 10    
 
 def optimal(mode):
     print("Optimal X ",judge_mode(mode))
@@ -248,6 +269,16 @@ def optimal(mode):
             print('Final Page Fault: ',page_fault)
             print('interrupt: ',interrupt)
             print('disk write: ',dw)
+            print("=============================")
+            #answer_PageFault = page_fault
+            #answer_Interrupt = interrupt
+            #answer_DiskWrite = dw
+            # 寫入 csv
+            import csv
+            with open('demo_statistic.csv','a',newline='') as csvfile:
+                writer = csv.writer(csvfile)
+                writer.writerow([argvlist[1],argvlist[2],frame_number,page_fault,interrupt,dw]) 
+
             frame_number = frame_number + 10        
     frame_number = 10
     #for i in range(10):
@@ -344,7 +375,17 @@ def optimal(mode):
         print('Final Page Fault: ',page_fault)
         print('interrupt: ',interrupt)
         print('disk write: ',dw)
-        frame_number = frame_number + 10
+        print("=============================")
+        #answer_PageFault = page_fault
+        #answer_Interrupt = interrupt
+        #answer_DiskWrite = dw
+        
+        # 寫入 csv
+        import csv
+        with open('demo_statistic.csv','a',newline='') as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerow([argvlist[1],argvlist[2],frame_number,page_fault,interrupt,dw])
+        frame_number = frame_number + 10     
 
 def esc(mode):
     custom_run = 0
@@ -522,8 +563,16 @@ def esc(mode):
             print("interrupt ",interrupt)
             print("dw ",dw)
             print("============================")
-            frame_number = frame_number + 10        
-
+            #answer_PageFault = page_fault
+            #answer_Interrupt = interrupt
+            #answer_DiskWrite = dw            
+                    
+            # 寫入 csv
+            import csv
+            with open('demo_statistic.csv','a',newline='') as csvfile:
+                writer = csv.writer(csvfile)
+                writer.writerow([argvlist[1],argvlist[2],frame_number,page_fault,interrupt,dw]) 
+            frame_number = frame_number + 10    
 
     frame_number = 10
     modify = dw_ds()
@@ -680,8 +729,16 @@ def esc(mode):
         print("interrupt ",interrupt)
         print("dw ",dw)
         print("============================")
-        frame_number = frame_number + 10
-
+        #answer_PageFault = page_fault
+        #answer_Interrupt = interrupt
+        #answer_DiskWrite = dw        
+        
+        # 寫入 csv
+        import csv
+        with open('demo_statistic.csv','a',newline='') as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerow([argvlist[1],argvlist[2],frame_number,page_fault,interrupt,dw])
+            frame_number = frame_number + 10 
 def lru_pro(mode):
     print("LRU_Pro X ",judge_mode(mode))
     custom_run = 0
@@ -799,8 +856,16 @@ def lru_pro(mode):
             print("interrupt: ",interrupt)
             print("disk write: ",dw)
             print("=====================")
-            fn = fn + 10            
-
+            #answer_PageFault = page_fault
+            #answer_Interrupt = interrupt
+            #answer_DiskWrite = dw
+                        
+            # 寫入 csv
+            import csv
+            with open('demo_statistic.csv','a',newline='') as csvfile:
+                writer = csv.writer(csvfile)
+                writer.writerow([argvlist[1],argvlist[2],fn,page_fault,interrupt,dw])
+            fn = fn + 10     
 
     fn = 10
     #for z in range(10):
@@ -888,7 +953,16 @@ def lru_pro(mode):
         print(interrupt)
         print(dw)
         print("=====================")
-        fn = fn + 10    
+        #answer_PageFault = page_fault
+        #answer_Interrupt = interrupt
+        #answer_DiskWrite = dw
+        
+        # 寫入 csv
+        import csv
+        with open('demo_statistic.csv','a',newline='') as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerow([argvlist[1],argvlist[2],fn,page_fault,interrupt,dw])
+        fn = fn + 10                 
 if __name__ == "__main__":
     argvlist = sys.argv
     if len(sys.argv) == 2 :
@@ -925,7 +999,21 @@ if __name__ == "__main__":
             print("python demo_page_replacement.py algo? input_type?")
     else:
         print("Format :")
-        print("python demo_page_replacement.py algo? input_type?")        
+        print("python demo_page_replacement.py algo? input_type?")
+    """    
+    print(answer_PageFault)
+    print(answer_Interrupt)
+    print(answer_DiskWrite)
+
+    # 寫入 csv
+    import csv
+    with open('demo_statistic.csv','a',newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerow([argvlist[1],argvlist[2],answer_PageFault,answer_Interrupt,answer_DiskWrite])
+    """
+
+    # 繪圖 | FIFO x LRU Pro x Optimal
+                 
 
 
 
