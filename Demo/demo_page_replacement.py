@@ -173,6 +173,7 @@ def optimal(mode):
 
     dw_set = dw_ds()
     if custom_run == 1:
+        print("check*")
         frame_number = 10
         #for i in range(10):
         while frame_number <= 100 :
@@ -760,15 +761,11 @@ def lru_pro(mode):
     dw_set = dw_ds()
     if custom_run == 1:
         fn = 10
-        #print("here:",rs_dict[10][10:20])
-
+        #for z in range(10):
         while fn <= 100 :
+            rs = rs_dict[fn]
             #fn = input("輸入frame數: ")
             fn = int(fn)
-            rs = rs_dict[fn]
-
-            #print("Type:",type(rs))
-
             page_fault = 0
             dw = 0
             interrupt = 0
@@ -779,10 +776,6 @@ def lru_pro(mode):
             index = 0
             for i in range(fn):
                 #print(rs[index])
-
-                #print("checkk",i," ",rs[index])
-                #print("check: ",type(rs[index]))
-
                 frame.append(rs[index])
                 frame_record.append(1)
                 index = index + 1
@@ -790,9 +783,7 @@ def lru_pro(mode):
 
             #print(len(frame))
             #print(len(frame_record))
-            print("current: ",page_fault)
-            print(len(rs))
-
+            print(page_fault)
             while index < len(rs):
                 #print(frame)
                 #print(">>>",frame_record)
@@ -852,21 +843,20 @@ def lru_pro(mode):
                     page_fault = page_fault + 1
 
                 index = index + 1
-            print("page_fault: ",page_fault)
-            print("interrupt: ",interrupt)
-            print("disk write: ",dw)
+            print(page_fault)
+            print(interrupt)
+            print(dw)
             print("=====================")
             #answer_PageFault = page_fault
             #answer_Interrupt = interrupt
             #answer_DiskWrite = dw
-                        
+            
             # 寫入 csv
             import csv
             with open('demo_statistic.csv','a',newline='') as csvfile:
                 writer = csv.writer(csvfile)
                 writer.writerow([argvlist[1],argvlist[2],fn,page_fault,interrupt,dw])
-            fn = fn + 10     
-
+            fn = fn + 10                 
     fn = 10
     #for z in range(10):
     while fn <= 100 and custom_run==0:
