@@ -250,9 +250,17 @@ def optimal(mode):
                     if dw_set[near_position] == 1 :
                         dw = dw + 1
                     """
+                    """ graph
                     if dw_set[rs.index(frame[victim_page_index])] == 1:
                         dw = dw + 1
-
+                    """
+                    ###
+                    for k in range(index-1,0,-1):
+                        if rs[k] == frame[victim_page_index]:
+                            if dw_set[k] == 1:
+                                dw = dw + 1
+                            break
+                    ###     
                     for k in range(fn_tc1):
                         frame_record[k] = frame_record[k] - 1
 
@@ -356,9 +364,17 @@ def optimal(mode):
                 if dw_set[near_position] == 1 :
                     dw = dw + 1
                 """
+                """
                 if dw_set[rs.index(frame[victim_page_index])] == 1:
                     dw = dw + 1
-
+                """
+                ### update
+                for k in range(index-1,0,-1):
+                    if rs[k] == frame[victim_page_index]:
+                        if dw_set[k] == 1:
+                            dw = dw + 1
+                        break
+                ###
                 for k in range(fn_tc1):
                     frame_record[k] = frame_record[k] - 1
 
@@ -504,13 +520,13 @@ def esc(mode):
                                 interrupt = interrupt + 1
                                 index = index + 1
                                 out_of_Loop1 = 1
-                                pointer = (pointer%4) + 1
+                                pointer = (pointer%(frame_number-1)) + 1
                                 break # Loop1
                             else:
                                 pointer = pointer + 1
                                 
                             if pointer >= (frame_number-1):
-                                pointer = (pointer%4) + 1
+                                pointer = (pointer%(frame_number-1)) + 1
                                 #print("exit")
                                 break # Loop1
 
@@ -541,7 +557,7 @@ def esc(mode):
                                     out_of_Loop2 = 1
                                     index = index + 1
                                     #pointer = (pointer%4) + 1
-                                    pointer = (pointer%4) + 1
+                                    pointer = (pointer%(frame_number-1)) + 1
                                     break # Loop 2
                                 else:
                                     #pointer = (pointer%4) + 1
@@ -549,7 +565,7 @@ def esc(mode):
                                     pointer = pointer + 1
                                 
                                 if pointer >= (frame_number-1) :
-                                    pointer = (pointer%4) + 1
+                                    pointer = (pointer%(frame_number-1)) + 1
                                     #print("out_of_Loop2")
                                     break
 
@@ -670,13 +686,13 @@ def esc(mode):
                             interrupt = interrupt + 1
                             index = index + 1
                             out_of_Loop1 = 1
-                            pointer = (pointer%4) + 1
+                            pointer = (pointer%(frame_number-1)) + 1
                             break # Loop1
                         else:
                             pointer = pointer + 1
                             
                         if pointer >= (frame_number-1):
-                            pointer = (pointer%4) + 1
+                            pointer = (pointer%(frame_number-1)) + 1
                             #print("exit")
                             break # Loop1
 
@@ -707,7 +723,7 @@ def esc(mode):
                                 out_of_Loop2 = 1
                                 index = index + 1
                                 #pointer = (pointer%4) + 1
-                                pointer = (pointer%4) + 1
+                                pointer = (pointer%(frame_number-1)) + 1
                                 break # Loop 2
                             else:
                                 #pointer = (pointer%4) + 1
@@ -715,7 +731,7 @@ def esc(mode):
                                 pointer = pointer + 1
                             
                             if pointer >= (frame_number-1) :
-                                pointer = (pointer%4) + 1
+                                pointer = (pointer%(frame_number-1)) + 1
                                 #print("out_of_Loop2")
                                 break
 
